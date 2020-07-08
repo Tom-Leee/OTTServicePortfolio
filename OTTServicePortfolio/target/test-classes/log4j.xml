@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="gmail.joohyoung.t">
+	<logger name="com.gmail.joohyoung">
 		<level value="info" />
 	</logger>
 	
