@@ -24,6 +24,13 @@
 			<version>5.1.49</version>
 		</dependency>
 		
+		<!-- 스프링에서 데이터베이스 사용을 위한 의존성 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>	
+		
 		<!-- lombok 설정-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

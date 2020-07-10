@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- MySQL 접속 정보 Bean -->
 	
@@ -11,7 +15,7 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://@192.168.0.200:3306/watchadb?userUnicode=yes&amp;characterEncoding=UTF-8</value>
+			<value>jdbc:mysql://@192.168.0.200:3306/sample?userUnicode=yes&amp;characterEncoding=UTF-8</value>
 		</property>
 		<property name="username">
 			<value>root</value>
@@ -19,6 +23,37 @@
 		<property name="password">
 			<value>*******</value>
 		</property>
+	</bean>
+	
+	<!-- 하이버네이트 사용을 위한 bean 설정 -->
+	<bean id="sessionFactory"
+	class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mappingResources">
+			<list>
+				<value>com/joohyoung/t/lee/dao/users.hbm.xml</value>
+			</list>
+		</property>
+		
+		<!-- 매핑 파일 정보 설정 -->
+		<property name="mappingResources">
+			<list>
+				<value>com/joohyoung/t/lee/dao/users.hbm.xml</value>
+			</list>
+		</property>
+		
+		<!-- 데이터베이스 종류 -->
+		<property name="hibernateProperties">
+				<value>hibernate.dialect=org.hibernate.dialect.MySQLDialect</value>
+		</property>
+	</bean>
+	
+	<tx:annotation-driven/>
+
+	<!-- 하이버네이트 트랜잭션 매니저 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 </beans>

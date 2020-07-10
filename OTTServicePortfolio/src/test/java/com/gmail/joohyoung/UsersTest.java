@@ -2,9 +2,11 @@ package com.gmail.joohyoung;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -12,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class UsersTest {
+	
 	//데이터베이스 연결을 테스트
 	@Autowired
 	private DataSource dataSource;
@@ -20,7 +23,12 @@ public class UsersTest {
 	@Test
 	public void connectTest() {
 		try {
-			System.out.println(dataSource.getConnection());
+			GenericXmlApplicationContext context = 
+					new GenericXmlApplicationContext(
+						"root-context.xml");
+			//하버네이트 설정 확인
+			SessionFactory sessionFactory = context.getBean(SessionFactory.class);
+			System.out.println(sessionFactory);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

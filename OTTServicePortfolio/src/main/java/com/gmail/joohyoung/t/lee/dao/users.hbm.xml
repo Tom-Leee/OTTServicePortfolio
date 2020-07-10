@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+	<hibernate-mapping package="com.gmail.joohyoung.t.lee.domain">
+		<class name="Users" table="userdb">
+			<id name="userid" column="USERID" />
+			<property name="userpw" column="USERPW"/>
+			<property name="usernickname" column="USERNICKNAME"/>
+			<property name="userprofileimage" column="USERPROFILEIMAGE"/>
+			<property name="membership" column="MEMBERSHIP"/>
+			<property name="userlastlogindate" column="USERLASTLOGINDATE"/>
+			<property name="userwithdrawal" column="USERWITHDRAWAL"/>
+		</class>
+	</hibernate-mapping>	
